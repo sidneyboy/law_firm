@@ -61,8 +61,8 @@
                 {{ __('Settings') }}
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link">
+            <li class="nav-item {{ Nav::isRoute('case') }}">
+                <a class="nav-link" href="{{ route('case') }}">
                     <i class="bi bi-bank"></i>
                     <span>{{ __('Case') }}</span>
                 </a>
@@ -71,15 +71,15 @@
             <!-- Nav Item - Profile -->
 
 
-            <li class="nav-item">
-                <a class="nav-link">
+            <li class="nav-item {{ Nav::isRoute('category') }}">
+                <a class="nav-link" href="{{ route('category') }}">
                     <i class="bi bi-tags"></i>
                     <span>{{ __('Category') }}</span>
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link">
+            <li class="nav-item {{ Nav::isRoute('nature_of_case') }}">
+                <a class="nav-link" href="{{ route('nature_of_case') }}">
                     <i class="fas fa-fw fa-hands-helping"></i>
                     <span>{{ __('Nature of Case') }}</span>
                 </a>
