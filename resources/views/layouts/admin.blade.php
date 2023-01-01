@@ -28,12 +28,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background:black" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion toggled" style="background:black" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -65,6 +65,13 @@
                 <a class="nav-link" href="{{ route('case') }}">
                     <i class="bi bi-bank"></i>
                     <span>{{ __('Case') }}</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ Nav::isRoute('list_of_cases') }}">
+                <a class="nav-link" href="{{ route('list_of_cases') }}">
+                    <i class="bi bi-list-ol"></i>
+                    <span>{{ __('List of Cases') }}</span>
                 </a>
             </li>
 

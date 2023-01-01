@@ -31,6 +31,19 @@ Route::post('/nature_of_case_edit_process', 'HomeController@nature_of_case_edit_
 Route::get('/case', 'HomeController@case')->name('case');
 Route::post('/cases_process', 'HomeController@cases_process')->name('cases_process');
 
+Route::get('/list_of_cases', 'HomeController@list_of_cases')->name('list_of_cases');
+Route::post('/case_client_name_update', 'HomeController@case_client_name_update')->name('case_client_name_update');
+Route::post('/case_category_update', 'HomeController@case_category_update')->name('case_category_update');
+Route::post('/case_nature_of_case_update', 'HomeController@case_nature_of_case_update')->name('case_nature_of_case_update');
+Route::post('/case_description_update', 'HomeController@case_description_update')->name('case_description_update');
+Route::post('/case_remarks_update', 'HomeController@case_remarks_update')->name('case_remarks_update');
+Route::post('/case_verdict_update', 'HomeController@case_verdict_update')->name('case_verdict_update');
+
+Route::get('/case_details/{id}', 'HomeController@case_details')->name('case_details');
+Route::post('/case_details_process', 'HomeController@case_details_process')->name('case_details_process');
+
+
+
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');

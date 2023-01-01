@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Categories;
 use App\Models\Nature_of_case;
 use App\Models\Cases;
+use App\Models\Cases_details;
+use App\Models\Case_details_attachments;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,7 +48,7 @@ class HomeController extends Controller
             //...
         ];
 
-        $category = Categories::where('user_id', auth()->user()->id)->get();
+        $category = Categories::get();
 
         return view('category', compact('widget'), [
             'category' => $category,
@@ -92,7 +94,7 @@ class HomeController extends Controller
             //...
         ];
 
-        $nature_of_case = Nature_of_case::where('user_id', auth()->user()->id)->get();
+        $nature_of_case = Nature_of_case::get();
 
         return view('nature_of_case', compact('widget'), [
             'nature_of_case' => $nature_of_case,
@@ -138,8 +140,8 @@ class HomeController extends Controller
             //...
         ];
 
-        $nature_of_case = Nature_of_case::select('id', 'nature_of_case')->where('user_id', auth()->user()->id)->get();
-        $category = Categories::select('id', 'category')->where('user_id', auth()->user()->id)->get();
+        $nature_of_case = Nature_of_case::select('id', 'nature_of_case')->get();
+        $category = Categories::select('id', 'category')->get();
 
         return view('case', compact('widget'), [
             'nature_of_case' => $nature_of_case,
@@ -161,6 +163,145 @@ class HomeController extends Controller
 
         $new->save();
 
+        return redirect('list_of_cases')->with('success', 'Successfully Added New Case Profile');
+    }
+
+    public function list_of_cases()
+    {
+        $users = User::count();
+
+        $widget = [
+            'users' => $users,
+            //...
+        ];
+
+        $case = Cases::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+        $category = Categories::select('id', 'category')->get();
+        $nature_of_case = Nature_of_case::select('id', 'nature_of_case')->get();
+
+        return view('list_of_cases', compact('widget'), [
+            'case' => $case,
+            'category' => $category,
+            'nature_of_case' => $nature_of_case,
+        ]);
+    }
+
+    public function case_client_name_update(Request $request)
+    {
+        //return $request->input();
+        date_default_timezone_set('Asia/Manila');
+        $date = date('Y-m-d H:i:s');
+
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'full_name' => $request->input('full_name'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Client Name');
+    }
+
+    public function case_category_update(Request $request)
+    {
+        //return $request->input();
+        date_default_timezone_set('Asia/Manila');
+        $date = date('Y-m-d H:i:s');
+
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'category_id' => $request->input('category_id'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Category');
+    }
+
+    public function case_nature_of_case_update(Request $request)
+    {
+        //return $request->input();
+        date_default_timezone_set('Asia/Manila');
+        $date = date('Y-m-d H:i:s');
+
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'nature_of_case_id' => $request->input('nature_of_case_id'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Nature of Case');
+    }
+
+    public function case_description_update(Request $request)
+    {
+        //return $request->input();
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'case_description' => $request->input('case_description'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Description');
+    }
+
+    public function case_remarks_update(Request $request)
+    {
+        //return $request->input();
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'remarks' => $request->input('remarks'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Remarks');
+    }
+
+    public function case_verdict_update(Request $request)
+    {
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'decision' => $request->input('verdict'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Verdict');
+    }
+
+    public function case_details($id)
+    {
+        $case = Cases::find($id);
+        $case_details = Cases_details::where('cases_id',$id)->orderBy('id','desc')->get();
+
+        return view('case_details', [
+            'case' => $case,
+            'case_details' => $case_details,
+        ])->with('cases_id', $id);
+    }
+
+    public function case_details_process(Request $request)
+    {
+        //dd($request->all());
         
+        $new_details = new Cases_details([
+            'cases_id' => $request->input('cases_id'),
+            'appointment_hearing_date' => $request->input('appointment_hearing_date'),
+            'description' => $request->input('description'),
+            'remarks' => $request->input('remarks'),
+        ]);
+
+        $new_details->save();
+
+        if ($request->attachments) {
+            foreach ($request->attachments as $key => $attachments) {
+
+                $attachment_name = $attachments->getClientOriginalName();
+                $attachments->move(public_path('storage'), $attachment_name);
+
+               $type = $attachments->getClientMimeType();
+
+                $new_attachment = new Case_details_attachments([
+                    'attachment_name' => $attachment_name,
+                    'case_details_id' => $new_details->id,
+                    'type' => $type,
+                ]);
+
+                $new_attachment->save();
+            }
+        }
+
+        return redirect()->route('case_details', ['id' => $request->input('cases_id')])->with('success','Successfully Added Case Details');
     }
 }
