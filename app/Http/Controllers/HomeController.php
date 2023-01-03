@@ -329,9 +329,30 @@ class HomeController extends Controller
     public function show_file($id)
     {
         $attachments = Case_details_attachments::find($id);
+        return response()->file(asset('/storage/' . $attachments->attachment_name));
+    }
 
-        return view('show_file', [
-            'attachments' => $attachments,
+    public function search_client(Request $request)
+    {
+        //return $request->input();
+        $users = User::count();
+
+        $widget = [
+            'users' => $users,
+            //...
+        ];
+
+        $case = Cases::where('user_id', auth()->user()->id)
+            ->Where('full_name', 'like', '%' . $request->input('search') . '%')
+            ->orderBy('id', 'desc')->get();
+
+        $category = Categories::select('id', 'category')->get();
+        $nature_of_case = Nature_of_case::select('id', 'nature_of_case')->get();
+
+        return view('list_of_cases', compact('widget'), [
+            'case' => $case,
+            'category' => $category,
+            'nature_of_case' => $nature_of_case,
         ]);
     }
 }

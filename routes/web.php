@@ -46,6 +46,10 @@ Route::post('/case_details_process', 'HomeController@case_details_process')->nam
 Route::get('/show_image/{id}', 'HomeController@show_image')->name('show_image');
 Route::get('/show_file/{id}', 'HomeController@show_file')->name('show_file');
 
+Route::get('/search_client', 'HomeController@search_client')->name('search_client');
+
+
+
 
 
 

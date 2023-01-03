@@ -115,12 +115,12 @@
                                                                     @foreach ($details->attachments as $attachments)
                                                                         <tr>
                                                                             <td>
-                                                                                @if (str_contains($attachments->type,'image'))
-                                                                                    <a href="{{ url('show_image',['id' => $attachments->id]) }}"
+                                                                                @if (str_contains($attachments->type, 'image'))
+                                                                                    <a href="{{ url('show_image', ['id' => $attachments->id]) }}"
                                                                                         target="_blank">{{ $attachments->attachment_name }}</a>
-                                                                                @elseif(str_contains($attachments->type,'application'))
-                                                                                    <a href="{{ url('show_file',['id' => $attachments->id]) }}"
-                                                                                        target="_blank">{{ $attachments->attachment_name }}</a>
+                                                                                @elseif(str_contains($attachments->type, 'application'))
+                                                                                    <a target="_blank"
+                                                                                        href="{{ asset('/storage/' . $attachments->attachment_name) }}">{{ $attachments->attachment_name }}</a>
                                                                                 @endif
                                                                             </td>
                                                                             <td>{{ $attachments->type }}</td>
