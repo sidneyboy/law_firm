@@ -88,7 +88,7 @@
                                             <button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal"
                                                 data-target="#exampleModal">
                                                 <span
-                                                    style="font-size:50px;text-align:center;">{{ count($details->attachments) }}</span>
+                                                    style="font-size:30px;text-align:center;">{{ count($details->attachments) }}</span>
                                             </button>
 
                                             <!-- Modal -->
