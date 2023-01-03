@@ -33,6 +33,7 @@ Route::post('/cases_process', 'HomeController@cases_process')->name('cases_proce
 
 Route::get('/list_of_cases', 'HomeController@list_of_cases')->name('list_of_cases');
 Route::post('/case_client_name_update', 'HomeController@case_client_name_update')->name('case_client_name_update');
+Route::post('/case_client_title_update', 'HomeController@case_client_title_update')->name('case_client_title_update');
 Route::post('/case_category_update', 'HomeController@case_category_update')->name('case_category_update');
 Route::post('/case_nature_of_case_update', 'HomeController@case_nature_of_case_update')->name('case_nature_of_case_update');
 Route::post('/case_description_update', 'HomeController@case_description_update')->name('case_description_update');
@@ -41,6 +42,9 @@ Route::post('/case_verdict_update', 'HomeController@case_verdict_update')->name(
 
 Route::get('/case_details/{id}', 'HomeController@case_details')->name('case_details');
 Route::post('/case_details_process', 'HomeController@case_details_process')->name('case_details_process');
+
+Route::get('/show_image/{id}', 'HomeController@show_image')->name('show_image');
+Route::get('/show_file/{id}', 'HomeController@show_file')->name('show_file');
 
 
 

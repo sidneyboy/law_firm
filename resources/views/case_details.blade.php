@@ -83,11 +83,12 @@
                                         <td>{{ date('F j, Y', $details->appointement_hearing_date) }}</td>
                                         <td>{{ $details->description }}</td>
                                         <td>{{ $details->remarks }}</td>
-                                        <td style="font-size:50px;text-align:center;">
+                                        <td>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            <button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal"
                                                 data-target="#exampleModal">
-                                                {{ count($details->attachments) }}
+                                                <span
+                                                    style="font-size:50px;text-align:center;">{{ count($details->attachments) }}</span>
                                             </button>
 
                                             <!-- Modal -->
@@ -96,20 +97,41 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Attachments</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            ...
+                                                            <table class="table table-striped table-hover table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>File</th>
+                                                                        <th>File Type</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($details->attachments as $attachments)
+                                                                        <tr>
+                                                                            <td>
+                                                                                @if (str_contains($attachments->type,'image'))
+                                                                                    <a href="{{ url('show_image',['id' => $attachments->id]) }}"
+                                                                                        target="_blank">{{ $attachments->attachment_name }}</a>
+                                                                                @elseif(str_contains($attachments->type,'application'))
+                                                                                    <a href="{{ url('show_file',['id' => $attachments->id]) }}"
+                                                                                        target="_blank">{{ $attachments->attachment_name }}</a>
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{ $attachments->type }}</td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
+                                                            <button type="button" class="btn btn-sm btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save
-                                                                changes</button>
                                                         </div>
                                                     </div>
                                                 </div>

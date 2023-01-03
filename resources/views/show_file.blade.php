@@ -1,0 +1,1 @@
+<iframe src='{{ asset('/storage/'. $attachments->attachment_name) }}' width='1366px' height='623px' frameborder='0'>This is an embedded <a target='_blank' href='http://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe>

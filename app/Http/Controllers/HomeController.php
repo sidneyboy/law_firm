@@ -151,10 +151,9 @@ class HomeController extends Controller
 
     public function cases_process(Request $request)
     {
-        //return $request->input();
-
         $new = new Cases([
             'full_name' => $request->input('full_name'),
+            'title' => $request->input('title'),
             'category_id' => $request->input('category_id'),
             'nature_of_case_id' => $request->input('nature_of_case_id'),
             'case_description' => $request->input('case_description'),
@@ -198,6 +197,19 @@ class HomeController extends Controller
             ]);
 
         return redirect('list_of_cases')->with('success', 'Successfully Edited Client Name');
+    }
+
+    public function case_client_title_update(Request $request)
+    {
+        date_default_timezone_set('Asia/Manila');
+        $date = date('Y-m-d H:i:s');
+
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'title' => $request->input('title'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Title');
     }
 
     public function case_category_update(Request $request)
@@ -263,7 +275,7 @@ class HomeController extends Controller
     public function case_details($id)
     {
         $case = Cases::find($id);
-        $case_details = Cases_details::where('cases_id',$id)->orderBy('id','desc')->get();
+        $case_details = Cases_details::where('cases_id', $id)->orderBy('id', 'desc')->get();
 
         return view('case_details', [
             'case' => $case,
@@ -274,7 +286,7 @@ class HomeController extends Controller
     public function case_details_process(Request $request)
     {
         //dd($request->all());
-        
+
         $new_details = new Cases_details([
             'cases_id' => $request->input('cases_id'),
             'appointment_hearing_date' => $request->input('appointment_hearing_date'),
@@ -290,7 +302,7 @@ class HomeController extends Controller
                 $attachment_name = $attachments->getClientOriginalName();
                 $attachments->move(public_path('storage'), $attachment_name);
 
-               $type = $attachments->getClientMimeType();
+                $type = $attachments->getClientMimeType();
 
                 $new_attachment = new Case_details_attachments([
                     'attachment_name' => $attachment_name,
@@ -302,6 +314,24 @@ class HomeController extends Controller
             }
         }
 
-        return redirect()->route('case_details', ['id' => $request->input('cases_id')])->with('success','Successfully Added Case Details');
+        return redirect()->route('case_details', ['id' => $request->input('cases_id')])->with('success', 'Successfully Added Case Details');
+    }
+
+    public function show_image($id)
+    {
+        $attachments = Case_details_attachments::find($id);
+
+        return view('show_image', [
+            'attachments' => $attachments,
+        ]);
+    }
+
+    public function show_file($id)
+    {
+        $attachments = Case_details_attachments::find($id);
+
+        return view('show_file', [
+            'attachments' => $attachments,
+        ]);
     }
 }

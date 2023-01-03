@@ -1,0 +1,1 @@
+<img src="{{ asset('/storage/'. $attachments->attachment_name) }}" alt="">

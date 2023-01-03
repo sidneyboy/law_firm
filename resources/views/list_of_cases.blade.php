@@ -27,11 +27,13 @@
                     List of Cases
                 </div>
                 <div class="card-body">
-                    <a href="{{ url('case') }}" style="margin-bottom: 10px;" class="btn btn-secondary btn-sm float-right">New Case Profile (+)</a>
+                    <a href="{{ url('case') }}" style="margin-bottom: 10px;"
+                        class="btn btn-secondary btn-sm float-right">New Case Profile (+)</a>
                     <div class="table table-responsive">
                         <table class="table table-striped table-sm table-hover">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th>Title</th>
                                     <th>Client</th>
                                     <th>Category</th>
                                     <th>Nature</th>
@@ -45,6 +47,46 @@
                             <tbody>
                                 @foreach ($case as $data)
                                     <tr>
+                                        <td>
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModaltitle{{ $data->id }}">
+                                                {{ Str::ucfirst($data->title) }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModaltitle{{ $data->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Client Name</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('case_client_title_update') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="text" class="form-control" name="title"
+                                                                    value="{{ Str::ucfirst($data->title) }}" required>
+
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $data->id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td style="white-space:nowrap;">
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-toggle="modal"
@@ -105,7 +147,8 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="{{ route('case_category_update') }}" method="post">
+                                                        <form action="{{ route('case_category_update') }}"
+                                                            method="post">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <select name="category_id" class="form-control" required>
@@ -236,7 +279,8 @@
                                         <td>{{ $data->decision }}</td>
                                         <td>{{ date('F j, Y h:i a', strtotime($data->created_at)) }}</td>
                                         <td>
-                                            <a href="{{ url('case_details',['id' => $data->id]) }}" style="margin-bottom: 5px;"
+                                            <a href="{{ url('case_details', ['id' => $data->id]) }}"
+                                                style="margin-bottom: 5px;"
                                                 class="btn btn-sm btn-info btn-block">Details</a>
 
                                             <!-- Button trigger modal -->

@@ -28,10 +28,16 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Client Full Name</label>
                                     <input type="text" class="form-control" required name="full_name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Title</label>
+                                    <input type="text" class="form-control" required name="title">
                                 </div>
                             </div>
                             <div class="col-md-6">

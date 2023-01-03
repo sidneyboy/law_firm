@@ -52,7 +52,7 @@
 
                             <label for="">Username</label>
                             <div class="input-group mb-1">
-                                <input id="email" type="email"
+                                <input id="email" type="text"
                                     class="form-control rounded-0 @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email" autofocus
                                     aria-label="Username" aria-describedby="basic-addon2">
