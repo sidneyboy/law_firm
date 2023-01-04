@@ -28,22 +28,28 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea name="description" class="form-control" required cols="30" rows="5"></textarea>
+                                    <label for="">Nature of Hearing</label>
+                                    <input type="text" class="form-control" name="nature_of_hearing" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Hearing/Appointment Date</label>
-                                    <input type="date" class="form-control" name="appointment_hearing_date" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Remarks</label>
+                                    <label for="">Plea</label>
                                     <input type="text" class="form-control" name="remarks" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Date of Hearing</label>
+                                    <input name="date_of_hearing" class="form-control" required type="date">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Time of Hearing</label>
+                                    <input name="time_of_hearing" class="form-control" required type="time">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -146,4 +152,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

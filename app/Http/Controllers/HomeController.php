@@ -154,9 +154,15 @@ class HomeController extends Controller
         $new = new Cases([
             'full_name' => $request->input('full_name'),
             'title' => $request->input('title'),
-            'category_id' => $request->input('category_id'),
+            // 'category_id' => $request->input('category_id'),
             'nature_of_case_id' => $request->input('nature_of_case_id'),
-            'case_description' => $request->input('case_description'),
+            // 'case_description' => $request->input('case_description'),
+            'court' => $request->input('court'),
+            'action' => $request->input('action'),
+            'docket_no' => $request->input('docket_no'),
+            'order' => $request->input('order'),
+            'date_of_order' => $request->input('date_of_order'),
+            'presiding_judge' => $request->input('presiding_judge'),
             'user_id' => auth()->user()->id,
         ]);
 
@@ -270,6 +276,46 @@ class HomeController extends Controller
             ]);
 
         return redirect('list_of_cases')->with('success', 'Successfully Edited Case Verdict');
+    }
+
+    public function case_client_action_update(Request $request)
+    {
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'action' => $request->input('action'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Case Action');
+    }
+
+    public function case_client_docket_no_update(Request $request)
+    {
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'docket_no' => $request->input('docket_no'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Docket No');
+    }
+
+    public function case_client_order_update(Request $request)
+    {
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'order' => $request->input('order'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Order');
+    }
+
+    public function case_client_date_of_order_update(Request $request)
+    {
+        Cases::where('id', $request->input('id'))
+            ->update([
+                'date_of_order' => $request->input('date_of_order'),
+            ]);
+
+        return redirect('list_of_cases')->with('success', 'Successfully Edited Date of Order');
     }
 
     public function case_details($id)

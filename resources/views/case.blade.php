@@ -28,30 +28,13 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Client Full Name</label>
                                     <input type="text" class="form-control" required name="full_name">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" required name="title">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Category</label>
-                                    <select class="form-control" required name="category_id">
-                                        <option value="" default>Select</option>
-                                        @foreach ($category as $data)
-                                            <option value="{{ $data->id }}">{{ Str::ucfirst($data->category) }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Nature of Case</label>
                                     <select class="form-control" required name="nature_of_case_id">
@@ -63,12 +46,68 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Title</label>
+                                    <input type="text" class="form-control" required name="title">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Court</label>
+                                    <input type="text" class="form-control" required name="court">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Action</label>
+                                    <input type="text" class="form-control" required name="action">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Docket No</label>
+                                    <input type="text" class="form-control" required name="docket_no">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Order</label>
+                                    <input type="text" class="form-control" required name="order">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Date of Order</label>
+                                    <input type="date" class="form-control" required name="date_of_order">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Presiding Judge</label>
+                                    <input type="text" class="form-control" required name="presiding_judge">
+                                </div>
+                            </div>
+
+
+                            {{-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Category</label>
+                                    <select class="form-control" required name="category_id">
+                                        <option value="" default>Select</option>
+                                        @foreach ($category as $data)
+                                            <option value="{{ $data->id }}">{{ Str::ucfirst($data->category) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div> --}}
+
+                            {{-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Case Description</label>
                                     <textarea name="case_description" class="form-control" cols="30" rows="5" required></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="card-footer">

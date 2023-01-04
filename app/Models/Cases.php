@@ -18,6 +18,12 @@ class Cases extends Model
         'decision',
         'remarks',
         'user_id',
+        'court',
+        'action',
+        'docket_no',
+        'order',
+        'date_of_order',
+        'presiding_judge',
     ];
 
     public function category()

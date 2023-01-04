@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('cases_details', function (Blueprint $table) {
             $table->id();
-            $table->Integer('cases_id');
-            $table->string('appointment_hearing_date');
-            $table->longText('description');
-            $table->string('remarks');
+            $table->Integer('cases_id')->nullable();
+            $table->string('appointment_hearing_date')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

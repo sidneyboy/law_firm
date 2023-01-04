@@ -39,6 +39,14 @@ Route::post('/case_nature_of_case_update', 'HomeController@case_nature_of_case_u
 Route::post('/case_description_update', 'HomeController@case_description_update')->name('case_description_update');
 Route::post('/case_remarks_update', 'HomeController@case_remarks_update')->name('case_remarks_update');
 Route::post('/case_verdict_update', 'HomeController@case_verdict_update')->name('case_verdict_update');
+Route::post('/case_client_action_update', 'HomeController@case_client_action_update')->name('case_client_action_update');
+Route::post('/case_client_docket_no_update', 'HomeController@case_client_docket_no_update')->name('case_client_docket_no_update');
+Route::post('/case_client_order_update', 'HomeController@case_client_order_update')->name('case_client_order_update');
+Route::post('/case_client_date_of_order_update', 'HomeController@case_client_date_of_order_update')->name('case_client_date_of_order_update');
+
+
+
+
 
 Route::get('/case_details/{id}', 'HomeController@case_details')->name('case_details');
 Route::post('/case_details_process', 'HomeController@case_details_process')->name('case_details_process');

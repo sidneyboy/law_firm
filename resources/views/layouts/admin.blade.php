@@ -26,6 +26,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -78,12 +79,12 @@
             <!-- Nav Item - Profile -->
 
 
-            <li class="nav-item {{ Nav::isRoute('category') }}">
+            {{-- <li class="nav-item {{ Nav::isRoute('category') }}">
                 <a class="nav-link" href="{{ route('category') }}">
                     <i class="bi bi-tags"></i>
                     <span>{{ __('Category') }}</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item {{ Nav::isRoute('nature_of_case') }}">
                 <a class="nav-link" href="{{ route('nature_of_case') }}">
@@ -127,11 +128,12 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="{{ route('search_client') }}">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                        method="get" action="{{ route('search_client') }}">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for client name..." aria-label="Search" aria-describedby="basic-addon2" required name="search">
+                                placeholder="Search for client name..." aria-label="Search"
+                                aria-describedby="basic-addon2" required name="search">
                             <div class="input-group-append">
                                 <button class="btn btn-dark" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
@@ -316,10 +318,12 @@
     </div>
 
     <!-- Scripts -->
+
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
 </body>
 
 </html>

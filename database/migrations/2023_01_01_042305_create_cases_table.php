@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('cases', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->Integer('category_id');
-            $table->Integer('nature_of_case_id');
-            $table->longText('case_description');
+            $table->Integer('category_id')->nullable();
+            $table->Integer('nature_of_case_id')->nullable();
+            $table->longText('case_description')->nullable();
             $table->string('decision')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
