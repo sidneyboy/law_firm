@@ -335,9 +335,11 @@ class HomeController extends Controller
 
         $new_details = new Cases_details([
             'cases_id' => $request->input('cases_id'),
-            'appointment_hearing_date' => $request->input('appointment_hearing_date'),
+            'date_of_hearing' => $request->input('date_of_hearing'),
+            'time_of_hearing' => $request->input('time_of_hearing'),
+            'nature_of_hearing' => $request->input('nature_of_hearing'),
             'description' => $request->input('description'),
-            'remarks' => $request->input('remarks'),
+            'plea' => $request->input('plea'),
         ]);
 
         $new_details->save();

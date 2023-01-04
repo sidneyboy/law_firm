@@ -37,7 +37,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Plea</label>
-                                    <input type="text" class="form-control" name="remarks" required>
+                                    <input type="text" class="form-control" name="plea" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -77,21 +77,23 @@
                         <table class="table table-striped table-sm table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Appointment</th>
-                                    <th>Description</th>
-                                    <th>Remarks</th>
+                                    <th>Date of Hearing</th>
+                                    <th>Time</th>
+                                    <th>Nature of Hearing</th>
+                                    <th>Plea</th>
                                     <th>Attachments</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($case_details as $details)
                                     <tr>
-                                        <td>{{ date('F j, Y', $details->appointement_hearing_date) }}</td>
-                                        <td>{{ $details->description }}</td>
-                                        <td>{{ $details->remarks }}</td>
+                                        <td>{{ date('F j, Y', strtotime($details->date_of_hearing)) }}</td>
+                                        <td>{{ date('h:i a', strtotime($details->time_of_hearing)) }}</td>
+                                        <td>{{ $details->nature_of_hearing }}</td>
+                                        <td>{{ $details->plea }}</td>
                                         <td>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal"
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#exampleModal">
                                                 <span
                                                     style="font-size:30px;text-align:center;">{{ count($details->attachments) }}</span>

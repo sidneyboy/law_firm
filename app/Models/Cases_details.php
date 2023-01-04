@@ -13,6 +13,10 @@ class Cases_details extends Model
         'cases_id',
         'appointment_hearing_date',
         'description',
+        'nature_of_hearing',
+        'time_of_hearing',
+        'date_of_hearing',
+        'plea',
         'remarks',
     ];
 
