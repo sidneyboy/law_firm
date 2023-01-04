@@ -87,16 +87,186 @@
                             <tbody>
                                 @foreach ($case_details as $details)
                                     <tr>
-                                        <td>{{ date('F j, Y', strtotime($details->date_of_hearing)) }}</td>
-                                        <td>{{ date('h:i a', strtotime($details->time_of_hearing)) }}</td>
-                                        <td>{{ $details->nature_of_hearing }}</td>
-                                        <td>{{ $details->plea }}</td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModaldate_of_hearing{{ $details->id }}">
+                                                {{ date('F j, Y', strtotime($details->date_of_hearing)) }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModaldate_of_hearing{{ $details->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Date of Hearing</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('hearing_date_edit') }}" method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="date" value="{{ $details->date_of_hearing }}" class="form-control" required
+                                                                    name="date_of_hearing">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $details->id }}">
+
+                                                                <input type="hidden" name="case_id"
+                                                                    value="{{ $details->cases_id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModaltime_of_hearing{{ $details->id }}">
+                                                {{ date('h:i a', strtotime($details->time_of_hearing)) }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModaltime_of_hearing{{ $details->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Time of Hearing
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('time_of_hearing_edit') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="time" value="{{ $details->time_of_hearing }}" class="form-control" required
+                                                                    name="time_of_hearing">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $details->id }}">
+
+                                                                <input type="hidden" name="case_id"
+                                                                    value="{{ $details->cases_id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModalnature_of_hearing{{ $details->id }}">
+                                                {{ $details->nature_of_hearing }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalnature_of_hearing{{ $details->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Nature of
+                                                                Hearing
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('nature_of_hearing_edit') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="text" value="{{ $details->plea }}" class="form-control" required
+                                                                    name="nature_of_hearing">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $details->id }}">
+
+                                                                <input type="hidden" name="case_id"
+                                                                    value="{{ $details->cases_id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModalplea{{ $details->id }}">
+                                                {{ $details->plea }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalplea{{ $details->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Plea
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('plea_edit') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input type="text" value="{{ $details->plea }}" class="form-control" required
+                                                                    name="plea">
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $details->id }}">
+
+                                                                <input type="hidden" name="case_id"
+                                                                    value="{{ $details->cases_id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#exampleModal">
-                                                <span
-                                                    style="font-size:30px;text-align:center;">{{ count($details->attachments) }}</span>
+                                                <span style="text-align:center;">Show Attachments</span>
                                             </button>
 
                                             <!-- Modal -->
@@ -105,7 +275,8 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Attachments</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Attachments
+                                                            </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>

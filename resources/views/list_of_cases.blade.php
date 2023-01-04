@@ -33,6 +33,7 @@
                         <table class="table table-striped table-sm table-hover">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th>Status</th>
                                     <th>Nature</th>
                                     <th>Title</th>
                                     <th>Client</th>
@@ -47,6 +48,52 @@
                             <tbody>
                                 @foreach ($case as $data)
                                     <tr>
+                                        <td style="white-space:nowrap;">
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                data-target="#exampleModalremarks{{ $data->id }}">
+                                                {{ $data->remarks }}
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalremarks{{ $data->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Remarks
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('case_remarks_update') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                {{-- <input type="text" value="{{ $data->remarks }}" class="form-control" name="remarks" required> --}}
+
+                                                                <select name="remarks" class="form-control" required>
+                                                                    <option value="" default>Select</option>
+                                                                    <option value="On Going">On Going</option>
+                                                                    <option value="Closed">Closed</option>
+                                                                </select>
+
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $data->id }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-sm btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td style="white-space:nowrap;">
                                             <button type="button" class="btn" data-toggle="modal"
                                                 data-target="#exampleModalnature_of_case{{ $data->id }}">
@@ -352,18 +399,18 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{{ date('F j, Y', strtotime($data->created_at)) }}</td>
+                                        <td><span class="btn">{{ date('F j, Y', strtotime($data->created_at)) }}</span></td>
                                         <td>
                                             <a href="{{ url('case_details', ['id' => $data->id]) }}"
                                                 style="margin-bottom: 5px;"
                                                 class="btn btn-sm btn-info btn-block">Details</a>
 
 
-                                            {{-- <button type="button" style="text-align: justify;margin-bottom:5px;"
-                                                class="btn btn-sm btn-primary" style="margin-bottom:5px;"
+                                            <button type="button" style="margin-bottom:5px;"
+                                                class="btn btn-sm btn-primary btn-block" style="margin-bottom:5px;"
                                                 data-toggle="modal"
                                                 data-target="#exampleModalremarks{{ $data->id }}">
-                                                Remarks
+                                                Status
                                             </button>
 
                                             
@@ -398,47 +445,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                           
-                                            <button type="button" style="text-align: justify"
-                                                class="btn btn-block btn-sm btn-success" style="margin-bottom:5px;"
-                                                data-toggle="modal"
-                                                data-target="#exampleModaldecision{{ $data->id }}">
-                                                Verdict
-                                            </button>
-
-                                            
-                                            <div class="modal fade" id="exampleModaldecision{{ $data->id }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Verdict
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="{{ route('case_verdict_update') }}" method="post">
-                                                            @csrf
-                                                            <div class="modal-body">
-                                                                <textarea name="verdict" class="form-control" cols="30" rows="5" required>{{ $data->decision }}</textarea>
-
-                                                                <input type="hidden" value="{{ $data->id }}"
-                                                                    name="id">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-sm btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-sm btn-primary">Save
-                                                                    changes</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </td>
                                     </tr>
                                 @endforeach

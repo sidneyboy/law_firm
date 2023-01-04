@@ -318,6 +318,46 @@ class HomeController extends Controller
         return redirect('list_of_cases')->with('success', 'Successfully Edited Date of Order');
     }
 
+    public function hearing_date_edit(Request $request)
+    {
+        Cases_details::where('id', $request->input('id'))
+            ->update([
+                'date_of_hearing' => $request->input('date_of_hearing'),
+            ]);
+
+        return redirect()->route('case_details', ['id' => $request->input('case_id')])->with('success', 'Successfully Edited Date of Hearing');
+    }
+
+    public function time_of_hearing_edit(Request $request)
+    {
+        Cases_details::where('id', $request->input('id'))
+            ->update([
+                'time_of_hearing' => $request->input('time_of_hearing'),
+            ]);
+
+        return redirect()->route('case_details', ['id' => $request->input('case_id')])->with('success', 'Successfully Edited Time of Hearing');
+    }
+
+    public function nature_of_hearing_edit(Request $request)
+    {
+        Cases_details::where('id', $request->input('id'))
+            ->update([
+                'nature_of_hearing' => $request->input('nature_of_hearing'),
+            ]);
+
+        return redirect()->route('case_details', ['id' => $request->input('case_id')])->with('success', 'Successfully Edited Nature of Hearing');
+    }
+
+    public function plea_edit(Request $request)
+    {
+        Cases_details::where('id', $request->input('id'))
+            ->update([
+                'plea' => $request->input('plea'),
+            ]);
+
+        return redirect()->route('case_details', ['id' => $request->input('case_id')])->with('success', 'Successfully Edited Plea');
+    }
+
     public function case_details($id)
     {
         $case = Cases::find($id);

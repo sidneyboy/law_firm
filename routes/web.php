@@ -43,6 +43,11 @@ Route::post('/case_client_action_update', 'HomeController@case_client_action_upd
 Route::post('/case_client_docket_no_update', 'HomeController@case_client_docket_no_update')->name('case_client_docket_no_update');
 Route::post('/case_client_order_update', 'HomeController@case_client_order_update')->name('case_client_order_update');
 Route::post('/case_client_date_of_order_update', 'HomeController@case_client_date_of_order_update')->name('case_client_date_of_order_update');
+Route::post('/hearing_date_edit', 'HomeController@hearing_date_edit')->name('hearing_date_edit');
+Route::post('/time_of_hearing_edit', 'HomeController@time_of_hearing_edit')->name('time_of_hearing_edit');
+Route::post('/nature_of_hearing_edit', 'HomeController@nature_of_hearing_edit')->name('nature_of_hearing_edit');
+Route::post('/plea_edit', 'HomeController@plea_edit')->name('plea_edit');
+
 
 
 
