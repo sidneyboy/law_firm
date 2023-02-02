@@ -43,13 +43,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Date of Hearing</label>
-                                    <input name="date_of_hearing" class="form-control" required type="date">
+                                    <input name="date_of_hearing" class="form-control" required type="text">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Time of Hearing</label>
-                                    <input name="time_of_hearing" class="form-control" required type="time">
+                                    <input name="time_of_hearing" class="form-control" required type="text">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -74,9 +74,9 @@
                 <div class="card-header">Case Details</div>
                 <div class="card-body">
                     <div class="table table-responsive">
-                        <table class="table table-striped table-sm table-hover">
-                            <thead class="thead-dark">
-                                <tr>
+                        <table class="table table-bordered table-sm table-hover">
+                            <thead>
+                                <tr class="table-info">
                                     <th>Date of Hearing</th>
                                     <th>Time</th>
                                     <th>Nature of Hearing</th>
@@ -91,7 +91,8 @@
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-toggle="modal"
                                                 data-target="#exampleModaldate_of_hearing{{ $details->id }}">
-                                                {{ date('F j, Y', strtotime($details->date_of_hearing)) }}
+                                                {{-- {{ date('F j, Y', strtotime($details->date_of_hearing)) }} --}}
+                                                {{ $details->date_of_hearing }}
                                             </button>
 
                                             <!-- Modal -->
@@ -110,7 +111,7 @@
                                                         <form action="{{ route('hearing_date_edit') }}" method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <input type="date" value="{{ $details->date_of_hearing }}" class="form-control" required
+                                                                <input type="text" value="{{ $details->date_of_hearing }}" class="form-control" required
                                                                     name="date_of_hearing">
                                                                 <input type="hidden" name="id"
                                                                     value="{{ $details->id }}">
@@ -133,7 +134,8 @@
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-toggle="modal"
                                                 data-target="#exampleModaltime_of_hearing{{ $details->id }}">
-                                                {{ date('h:i a', strtotime($details->time_of_hearing)) }}
+                                                {{-- {{ date('h:i a', strtotime($details->time_of_hearing)) }} --}}
+                                                {{ $details->time_of_hearing }}
                                             </button>
 
                                             <!-- Modal -->
@@ -154,7 +156,7 @@
                                                             method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <input type="time" value="{{ $details->time_of_hearing }}" class="form-control" required
+                                                                <input type="text" value="{{ $details->time_of_hearing }}" class="form-control" required
                                                                     name="time_of_hearing">
                                                                 <input type="hidden" name="id"
                                                                     value="{{ $details->id }}">

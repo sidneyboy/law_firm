@@ -79,7 +79,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Date of Order</label>
-                                    <input type="date" class="form-control" required name="date_of_order">
+                                    <input type="text" class="form-control" required name="date_of_order">
                                 </div>
                             </div>
                             <div class="col-md-4">

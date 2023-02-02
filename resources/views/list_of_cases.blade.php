@@ -30,9 +30,9 @@
                     <a href="{{ url('case') }}" style="margin-bottom: 10px;"
                         class="btn btn-secondary btn-sm float-right">New Case Profile (+)</a>
                     <div class="table table-responsive">
-                        <table class="table table-striped table-sm table-hover">
-                            <thead class="thead-dark">
-                                <tr>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="table-info">
                                     <th>Status</th>
                                     <th>Nature</th>
                                     <th>Title</th>
@@ -42,7 +42,8 @@
                                     <th>Date of Order</th>
                                     <th>Order</th>
                                     <th>Created</th>
-                                    <th>Option</th>
+                                    <th>Case Details</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,8 +69,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="{{ route('case_remarks_update') }}"
-                                                            method="post">
+                                                        <form action="{{ route('case_remarks_update') }}" method="post">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 {{-- <input type="text" value="{{ $data->remarks }}" class="form-control" name="remarks" required> --}}
@@ -160,7 +160,8 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Client Name</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Client Name
+                                                            </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -319,7 +320,8 @@
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-toggle="modal"
                                                 data-target="#exampleModaldate_of_order{{ $data->id }}">
-                                                {{ date('F j, Y', strtotime($data->date_of_order)) }}
+                                                {{-- {{ date('F j, Y', strtotime($data->date_of_order)) }} --}}
+                                                {{ $data->date_of_order }}
                                             </button>
 
                                             <!-- Modal -->
@@ -340,7 +342,7 @@
                                                             method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <input type="date" class="form-control"
+                                                                <input type="text" class="form-control"
                                                                     name="date_of_order" required>
 
                                                                 <input type="hidden" name="id"
@@ -399,21 +401,24 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><span class="btn">{{ date('F j, Y', strtotime($data->created_at)) }}</span></td>
+                                        <td><span class="btn">{{ date('F j, Y', strtotime($data->created_at)) }}</span>
+                                        </td>
                                         <td>
                                             <a href="{{ url('case_details', ['id' => $data->id]) }}"
                                                 style="margin-bottom: 5px;"
-                                                class="btn btn-sm btn-info btn-block">Details</a>
+                                                class="btn btn-sm btn-info btn-block">Show</a>
 
 
-                                            <button type="button" style="margin-bottom:5px;"
+
+                                        </td>
+                                        <td> <button type="button" style="margin-bottom:5px;"
                                                 class="btn btn-sm btn-primary btn-block" style="margin-bottom:5px;"
                                                 data-toggle="modal"
                                                 data-target="#exampleModalremarks{{ $data->id }}">
-                                                Status
+                                                Update
                                             </button>
 
-                                            
+
                                             <div class="modal fade" id="exampleModalremarks{{ $data->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">

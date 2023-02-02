@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $users = User::count();
 
         $widget = [
@@ -36,7 +37,8 @@ class HomeController extends Controller
             //...
         ];
 
-        return view('home', compact('widget'));
+        // return view('home', compact('widget'));
+        return redirect('list_of_cases');
     }
 
     public function category()
