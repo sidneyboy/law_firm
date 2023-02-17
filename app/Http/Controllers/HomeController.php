@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $users = User::count();
 
         $widget = [
@@ -165,12 +165,15 @@ class HomeController extends Controller
             'order' => $request->input('order'),
             'date_of_order' => $request->input('date_of_order'),
             'presiding_judge' => $request->input('presiding_judge'),
+            'remarks' => 'Pending',
             'user_id' => auth()->user()->id,
         ]);
 
         $new->save();
 
-        return redirect('list_of_cases')->with('success', 'Successfully Added New Case Profile');
+        // return redirect('list_of_cases')->with('success', 'Successfully Added New Case Profile');
+
+        return redirect()->route('case_details', ['id' => $new->id])->with('success', 'Successfully Added New Case Profile');
     }
 
     public function list_of_cases()

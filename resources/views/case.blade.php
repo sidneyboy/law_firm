@@ -70,26 +70,6 @@
                                     <input type="text" class="form-control" required name="docket_no">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Order</label>
-                                    <input type="text" class="form-control" required name="order">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Date of Order</label>
-                                    <input type="text" class="form-control" required name="date_of_order">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Presiding Judge</label>
-                                    <input type="text" class="form-control" required name="presiding_judge">
-                                </div>
-                            </div>
-
-
                             {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Category</label>

@@ -76,6 +76,7 @@
 
                                                                 <select name="remarks" class="form-control" required>
                                                                     <option value="" default>Select</option>
+                                                                    <option value="Pending">Pending</option>
                                                                     <option value="On Going">On Going</option>
                                                                     <option value="Closed">Closed</option>
                                                                 </select>
@@ -318,11 +319,23 @@
                                         </td>
                                         <td style="white-space:nowrap;">
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn" data-toggle="modal"
-                                                data-target="#exampleModaldate_of_order{{ $data->id }}">
-                                                {{-- {{ date('F j, Y', strtotime($data->date_of_order)) }} --}}
+
+                                            {{-- {{ date('F j, Y', strtotime($data->date_of_order)) }} --}}
+                                            @if ($data->date_of_order == null)
+                                                <button type="button" class="btn btn-sm btn-info btn-block"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModaldate_of_order{{ $data->id }}">
+                                                    Update
+                                                </button>
+                                            @else
+                                                {{-- <button type="button" class="btn btn-sm btn-success btn-block"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModaldate_of_order{{ $data->id }}">
+                                                   
+                                                </button> --}}
                                                 {{ $data->date_of_order }}
-                                            </button>
+                                            @endif
+
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModaldate_of_order{{ $data->id }}"
@@ -360,11 +373,20 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" style="text-align:left" class="btn"
-                                                data-toggle="modal" data-target="#exampleModalorder{{ $data->id }}">
+                                            @if ($data->date_of_order == null)
+                                                <button type="button" class="btn btn-sm btn-info btn-block"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModalorder{{ $data->id }}">
+                                                    Update
+                                                </button>
+                                            @else
+                                                {{-- <button type="button" class="btn btn-sm btn-success btn-block"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModalorder{{ $data->id }}">
+                                                   
+                                                </button> --}}
                                                 {{ $data->order }}
-                                            </button>
+                                            @endif
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModalorder{{ $data->id }}"
@@ -405,8 +427,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('case_details', ['id' => $data->id]) }}"
-                                                style="margin-bottom: 5px;"
-                                                class="btn btn-sm btn-info btn-block">Show</a>
+                                                style="margin-bottom: 5px;" class="btn btn-sm btn-info btn-block">Show</a>
 
 
 
